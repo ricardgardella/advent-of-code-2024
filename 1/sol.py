@@ -9,8 +9,15 @@ def part_2(df: pd.DataFrame) -> int:
     total_count = 0
     for i in range(len(df)):
         left = df.iloc[i]["Left"]
-        count = df.loc[df["Right"] == left, "Right"].count() * left
-        total_count += count
+        right = df.iloc[i]["Right"]
+        
+        if left < right:
+            total_count += right
+        elif left > right:
+            total_count += left
+        else:
+            total_count += left
+            
     return total_count
 
 def main():
